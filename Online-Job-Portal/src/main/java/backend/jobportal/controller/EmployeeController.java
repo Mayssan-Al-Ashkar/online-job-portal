@@ -47,7 +47,6 @@ public class EmployeeController {
     }
 
 
-    // Employee Profile Methods
     @PostMapping("/{employeeId}/qualifications")
     public ResponseEntity<QualificationDto> addQualification(@RequestBody QualificationDto qualification
             , @PathVariable("employeeId") int employeeId
