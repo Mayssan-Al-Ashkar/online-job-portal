@@ -57,23 +57,15 @@ public class JobPortalSecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/jobCategories/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/jobCategories/**").hasRole("ADMIN")
 
-                        // Security For Job Employer Controller
-
-                        // Employer itself
                         .requestMatchers(HttpMethod.POST, "/api/employers").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/employers").hasAnyRole("ADMIN")
 
 
-                        // Employer & Job
                         .requestMatchers(HttpMethod.POST, "/api/employers/{employerId}/jobs").hasRole("EMPLOYER")
                         .requestMatchers(HttpMethod.POST, "/api/employers/{employerId}/myApplications/{applicationId}").hasRole("EMPLOYER")
                         .requestMatchers(HttpMethod.GET, "/api/employers/{employerId}/jobs").hasAnyRole("EMPLOYER", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/employers/{employerId}/myApplications").hasAnyRole("EMPLOYER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/employers/{employerId}/jobs/{jobId}").hasAnyRole("EMPLOYER")
-
-                        // Security For Job Employee Controller
-
-                        // ------------------------- Employee Profile Methods-------------
 
                         .requestMatchers(HttpMethod.POST, "/api/employees").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/employees/{employeeId}/qualifications").hasRole("EMPLOYEE")
@@ -82,30 +74,14 @@ public class JobPortalSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/employees/{employeeId}").hasRole("EMPLOYEE")
 
-
-                        // -------------------Job Method Related to Employee Methods---------
-
                         .requestMatchers(HttpMethod.POST, "/api/employees/{employeeId}/jobs/{jobId}/apply").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST, "/api/employees/{employeeId}/jobs/{jobId}/yourApplications/{applicationId}/cancel").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/api/employees/{employeeId}/jobs/yourApplications").hasRole("EMPLOYEE")
 
-
-                        // Security For Job Controller
-
                         .requestMatchers("/api/jobs/**").permitAll()
-
-                        // Security For Job ApplicationController
 
                         .requestMatchers(HttpMethod.GET , "/api/jobs/jobApplications").hasRole("ADMIN")
 
-
-
-
-
-
-
-
-                        // Security For API Documentation
                         .requestMatchers(
                                 "/v3/api-docs",
                                 "/v3/api-docs/**",
