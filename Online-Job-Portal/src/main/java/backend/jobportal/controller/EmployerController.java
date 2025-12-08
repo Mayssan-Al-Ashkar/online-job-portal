@@ -37,7 +37,6 @@ public class EmployerController {
         this.jobApplicationService = jobApplicationService;
     }
 
-    // Employers Related Functions
     @PostMapping
     public ResponseEntity<Employer> createEmployer(@RequestBody Employer employer) {
 
@@ -50,7 +49,6 @@ public class EmployerController {
     }
 
 
-    // Employers Jobs Related Functions
 
     @PostMapping(value = "/{employerId}/jobs", consumes = {"*/*"})
     public ResponseEntity<String> createJob(@ModelAttribute JobDto jobDto,
